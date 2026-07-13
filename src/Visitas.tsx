@@ -25,8 +25,6 @@ export default function Visitas() {
   }
 
   async function gerarRelatorio() {
-    alert("ENTROU EM gerarRelatorio");
-
     if (!instituicaoId) {
       alert("Selecione uma instituição.");
       return;
@@ -41,17 +39,22 @@ export default function Visitas() {
       return;
     }
 
-    await gerarWord({
-      nome_instituicao: instituicao.nome || "",
-      cep: instituicao.cep || "",
-      endereco: instituicao.endereco || "",
-      cidade: instituicao.cidade || "",
-      estado: instituicao.estado || "",
-      responsavel: instituicao.responsavel || "",
-      data,
-      tecnico,
-      aplicador,
-    });
+    try {
+      await gerarWord({
+        nome_instituicao: instituicao.nome || "",
+        cep: instituicao.cep || "",
+        endereco: instituicao.endereco || "",
+        cidade: instituicao.cidade || "",
+        estado: instituicao.estado || "",
+        responsavel: instituicao.responsavel || "",
+        data,
+        tecnico,
+        aplicador,
+      });
+    } catch (error) {
+      console.error(error);
+      alert("Erro ao gerar o relatório.");
+    }
   }
 
   async function salvar() {
@@ -70,7 +73,7 @@ export default function Visitas() {
     ]);
 
     if (error) {
-      console.log(error);
+      console.error(error);
       alert("Erro ao salvar.");
       return;
     }
