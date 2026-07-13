@@ -1,26 +1,36 @@
-export async function gerarWord(dados: DadosRelatorio) {
-  alert("1");
+import PizZip from "pizzip";
+import Docxtemplater from "docxtemplater";
+import { saveAs } from "file-saver";
 
+export interface DadosRelatorio {
+  nome_instituicao: string;
+  cep: string;
+  endereco: string;
+  cidade: string;
+  estado: string;
+  responsavel: string;
+  data: string;
+  tecnico: string;
+  aplicador: string;
+}
+
+export async function gerarWord(dados: DadosRelatorio) {
   const response = await fetch(`/modelo/modelo.docx?v=${Date.now()}`, {
     cache: "no-store",
   });
 
-  alert("2");
+  if (!response.ok) {
+    throw new Error("Não foi possível carregar o modelo Word.");
+  }
 
   const content = await response.arrayBuffer();
 
-  alert("3");
-
   const zip = new PizZip(content);
-
-  alert("4");
 
   const doc = new Docxtemplater(zip, {
     paragraphLoop: true,
     linebreaks: true,
   });
-
-  alert("5");
 
   doc.render({
     nome_instituicao: dados.nome_instituicao,
@@ -34,20 +44,14 @@ export async function gerarWord(dados: DadosRelatorio) {
     aplicador: dados.aplicador,
   });
 
-  alert("6");
-
   const blob = doc.getZip().generate({
     type: "blob",
     mimeType:
       "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
   });
 
-  alert("7");
-
   saveAs(
     blob,
     `Relatório - ${dados.nome_instituicao} - ${dados.data}.docx`
   );
-
-  alert("8");
 }
