@@ -9,7 +9,7 @@ interface Visita {
   instituicoes: {
     nome: string;
     cidade: string;
-  };
+  }[];
 }
 
 export default function Historico() {
@@ -39,7 +39,15 @@ export default function Historico() {
       return;
     }
 
-    setVisitas(data as Visita[]);
+    setVisitas((data ?? []) as Visita[]);
+  }
+
+  function formatarData(data: string) {
+    if (!data) return "";
+
+    const [ano, mes, dia] = data.split("-");
+
+    return `${dia}/${mes}/${ano}`;
   }
 
   return (
@@ -85,26 +93,60 @@ export default function Historico() {
                   borderBottom: "1px solid #ddd",
                 }}
               >
-                {visita.data}
+                {formatarData(visita.data)}
               </td>
 
-              <td style={{ borderBottom: "1px solid #ddd" }}>
-                {visita.instituicoes?.nome}
+              <td
+                style={{
+                  padding: 10,
+                  borderBottom: "1px solid #ddd",
+                }}
+              >
+                {visita.instituicoes?.[0]?.nome ?? "-"}
               </td>
 
-              <td style={{ borderBottom: "1px solid #ddd" }}>
-                {visita.instituicoes?.cidade}
+              <td
+                style={{
+                  padding: 10,
+                  borderBottom: "1px solid #ddd",
+                }}
+              >
+                {visita.instituicoes?.[0]?.cidade ?? "-"}
               </td>
 
-              <td style={{ borderBottom: "1px solid #ddd" }}>
+              <td
+                style={{
+                  padding: 10,
+                  borderBottom: "1px solid #ddd",
+                }}
+              >
                 {visita.tecnico_avaliado}
               </td>
 
-              <td style={{ borderBottom: "1px solid #ddd" }}>
+              <td
+                style={{
+                  padding: 10,
+                  borderBottom: "1px solid #ddd",
+                }}
+              >
                 {visita.aplicador}
               </td>
             </tr>
           ))}
+
+          {visitas.length === 0 && (
+            <tr>
+              <td
+                colSpan={5}
+                style={{
+                  textAlign: "center",
+                  padding: 30,
+                }}
+              >
+                Nenhuma visita cadastrada.
+              </td>
+            </tr>
+          )}
         </tbody>
       </table>
     </div>
