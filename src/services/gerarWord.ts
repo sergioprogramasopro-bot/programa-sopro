@@ -14,6 +14,14 @@ export interface DadosRelatorio {
   aplicador: string;
 }
 
+function formatarData(data: string) {
+  if (!data) return "";
+
+  const [ano, mes, dia] = data.split("-");
+
+  return `${dia}/${mes}/${ano}`;
+}
+
 export async function gerarWord(dados: DadosRelatorio) {
   const response = await fetch(`/modelo/modelo.docx?v=${Date.now()}`, {
     cache: "no-store",
@@ -39,7 +47,7 @@ export async function gerarWord(dados: DadosRelatorio) {
     cidade: dados.cidade,
     estado: dados.estado,
     responsavel: dados.responsavel,
-    data: dados.data,
+    data: formatarData(dados.data),
     tecnico: dados.tecnico,
     aplicador: dados.aplicador,
   });
@@ -52,6 +60,6 @@ export async function gerarWord(dados: DadosRelatorio) {
 
   saveAs(
     blob,
-    `Relatório - ${dados.nome_instituicao} - ${dados.data}.docx`
+    `Relatório - ${dados.nome_instituicao} - ${formatarData(dados.data)}.docx`
   );
 }

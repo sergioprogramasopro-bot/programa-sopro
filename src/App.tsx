@@ -16,6 +16,7 @@ import HistoryIcon from "@mui/icons-material/History";
 
 import Instituicoes from "./Instituicoes";
 import Visitas from "./Visitas";
+import Historico from "./Historico";
 
 const drawerWidth = 220;
 
@@ -114,8 +115,18 @@ export default function App() {
             />
           </ListItemButton>
 
-          <ListItemButton disabled>
-            <ListItemIcon sx={{ color: "#c7c7c7", minWidth: 40 }}>
+          <ListItemButton
+            selected={tela === "historico"}
+            onClick={() => setTela("historico")}
+            sx={{
+              borderRadius: 2,
+              mb: 1,
+              "&.Mui-selected": {
+                background: "#dceeff",
+              },
+            }}
+          >
+            <ListItemIcon sx={{ color: "#1565c0", minWidth: 40 }}>
               <HistoryIcon />
             </ListItemIcon>
 
@@ -123,7 +134,8 @@ export default function App() {
               primary={
                 <Typography
                   sx={{
-                    color: "#b0b0b0",
+                    color: "#123c7a",
+                    fontWeight: 600,
                   }}
                 >
                   Histórico
@@ -145,7 +157,10 @@ export default function App() {
         }}
       >
         {tela === "instituicoes" && <Instituicoes />}
+
         {tela === "visitas" && <Visitas />}
+
+        {tela === "historico" && <Historico />}
       </Box>
     </Box>
   );
