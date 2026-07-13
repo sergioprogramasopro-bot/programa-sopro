@@ -15,9 +15,17 @@ export interface DadosRelatorio {
 }
 
 export async function gerarWord(dados: DadosRelatorio) {
+  // TESTE
+  alert("GERARWORD NOVO");
+
   const response = await fetch(`/modelo/modelo.docx?v=${Date.now()}`, {
-  cache: "no-store",
-});
+    cache: "no-store",
+  });
+
+  if (!response.ok) {
+    alert("Erro ao baixar o modelo.docx");
+    throw new Error("Não foi possível carregar o modelo.docx");
+  }
 
   const content = await response.arrayBuffer();
 
