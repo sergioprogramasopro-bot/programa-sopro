@@ -25,6 +25,8 @@ export default function Visitas() {
   }
 
   async function gerarRelatorio() {
+    alert("ENTROU EM gerarRelatorio");
+
     if (!instituicaoId) {
       alert("Selecione uma instituição.");
       return;
