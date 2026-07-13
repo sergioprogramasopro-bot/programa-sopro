@@ -3,6 +3,7 @@ import {
   Box,
   Drawer,
   Toolbar,
+  Typography,
   List,
   ListItemButton,
   ListItemIcon,
@@ -16,7 +17,7 @@ import HistoryIcon from "@mui/icons-material/History";
 import Instituicoes from "./Instituicoes";
 import Visitas from "./Visitas";
 
-const drawerWidth = 240;
+const drawerWidth = 220;
 
 export default function App() {
   const [tela, setTela] = useState("visitas");
@@ -31,8 +32,8 @@ export default function App() {
           "& .MuiDrawer-paper": {
             width: drawerWidth,
             boxSizing: "border-box",
-            background: "#F8F9FA",
-            borderRight: "1px solid #E5E7EB",
+            background: "#ffffff",
+            borderRight: "1px solid #dbe5f1",
           },
         }}
       >
@@ -48,7 +49,7 @@ export default function App() {
             src="/logo.png"
             alt="Programa SOPRO"
             style={{
-              width: "170px",
+              width: "160px",
               height: "auto",
             }}
           />
@@ -62,23 +63,25 @@ export default function App() {
               borderRadius: 2,
               mb: 1,
               "&.Mui-selected": {
-                background: "#E3F2FD",
-              },
-              "&.Mui-selected:hover": {
-                background: "#D7ECFC",
+                background: "#dceeff",
               },
             }}
           >
-            <ListItemIcon sx={{ color: "#1565C0" }}>
+            <ListItemIcon sx={{ color: "#1565c0", minWidth: 40 }}>
               <ApartmentIcon />
             </ListItemIcon>
 
             <ListItemText
-              primary="Instituições"
-              primaryTypographyProps={{
-                fontWeight: 600,
-                color: "#374151",
-              }}
+              primary={
+                <Typography
+                  sx={{
+                    color: "#123c7a",
+                    fontWeight: 600,
+                  }}
+                >
+                  Instituições
+                </Typography>
+              }
             />
           </ListItemButton>
 
@@ -89,64 +92,58 @@ export default function App() {
               borderRadius: 2,
               mb: 1,
               "&.Mui-selected": {
-                background: "#E3F2FD",
-              },
-              "&.Mui-selected:hover": {
-                background: "#D7ECFC",
+                background: "#dceeff",
               },
             }}
           >
-            <ListItemIcon sx={{ color: "#1565C0" }}>
+            <ListItemIcon sx={{ color: "#1565c0", minWidth: 40 }}>
               <AssignmentIcon />
             </ListItemIcon>
 
             <ListItemText
-              primary="Visitas"
-              primaryTypographyProps={{
-                fontWeight: 600,
-                color: "#374151",
-              }}
+              primary={
+                <Typography
+                  sx={{
+                    color: "#123c7a",
+                    fontWeight: 600,
+                  }}
+                >
+                  Visitas
+                </Typography>
+              }
             />
           </ListItemButton>
 
-          <ListItemButton
-            disabled
-            sx={{
-              borderRadius: 2,
-            }}
-          >
-            <ListItemIcon sx={{ color: "#9CA3AF" }}>
+          <ListItemButton disabled>
+            <ListItemIcon sx={{ color: "#c7c7c7", minWidth: 40 }}>
               <HistoryIcon />
             </ListItemIcon>
 
             <ListItemText
-              primary="Histórico"
-              primaryTypographyProps={{
-                color: "#9CA3AF",
-              }}
+              primary={
+                <Typography
+                  sx={{
+                    color: "#b0b0b0",
+                  }}
+                >
+                  Histórico
+                </Typography>
+              }
             />
           </ListItemButton>
         </List>
       </Drawer>
 
       <Box
-  component="main"
-  sx={{
-    flexGrow: 1,
-    p: 5,
-    background: `
-      linear-gradient(
-        135deg,
-        #F5F9FF 0%,
-        #EEF4FF 25%,
-        #E6F0FF 50%,
-        #EEF4FF 75%,
-        #F8FBFF 100%
-      )
-    `,
-    minHeight: "100vh",
-  }}
->
+        component="main"
+        sx={{
+          flexGrow: 1,
+          p: 4,
+          background:
+            "linear-gradient(135deg,#eef5ff 0%,#f7fbff 50%,#eef5ff 100%)",
+          minHeight: "100vh",
+        }}
+      >
         {tela === "instituicoes" && <Instituicoes />}
         {tela === "visitas" && <Visitas />}
       </Box>
