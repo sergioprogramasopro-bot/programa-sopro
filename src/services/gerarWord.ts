@@ -15,7 +15,7 @@ export interface DadosRelatorio {
 }
 
 export async function gerarWord(dados: DadosRelatorio) {
-  const response = await fetch("/modelo/modelo.docx");
+  const response = await fetch(`/modelo/modelo.docx?v=${Date.now()}`);
 
   const content = await response.arrayBuffer();
 
