@@ -59,9 +59,14 @@ export default function Historico() {
       console.error(error);
       return;
     }
-    console.log("VISITAS:", data);
+   
 
-    setVisitas(data as unknown as Visita[]);
+    setVisitas(
+  (data ?? []).map((v: any) => ({
+    ...v,
+    instituicoes: v.instituicoes ?? null,
+  }))
+);
   }
 
   function formatarData(data: string) {
@@ -163,7 +168,7 @@ export default function Historico() {
         borderBottom: "1px solid #ddd",
       }}
     >
-      {JSON.stringify(visita.instituicoes)}
+      {visita.instituicoes?.nome ?? "-"}
     </td>
 
     <td
@@ -172,7 +177,7 @@ export default function Historico() {
     borderBottom: "1px solid #ddd",
   }}
 >
-      {JSON.stringify(visita.instituicoes)}
+      {visita.instituicoes?.cidade ?? "-"}
     </td>
 
     <td
