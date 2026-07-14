@@ -20,7 +20,7 @@ interface Visita {
   cidade: string;
   estado: string;
   responsavel: string;
-}[];
+};
 }
 
 export default function Historico() {
@@ -61,7 +61,7 @@ export default function Historico() {
     }
     console.log("VISITAS:", data);
 
-    setVisitas((data ?? []) as Visita[]);
+    setVisitas(data as unknown as Visita[]);
   }
 
   function formatarData(data: string) {
@@ -163,16 +163,16 @@ export default function Historico() {
         borderBottom: "1px solid #ddd",
       }}
     >
-      {visita.instituicoes?.[0]?.nome ?? "-"}
+      {JSON.stringify(visita.instituicoes)}
     </td>
 
     <td
-      style={{
-        padding: 10,
-        borderBottom: "1px solid #ddd",
-      }}
-    >
-      {visita.instituicoes?.[0]?.cidade ?? "-"}
+  style={{
+    padding: 10,
+    borderBottom: "1px solid #ddd",
+  }}
+>
+      {JSON.stringify(visita.instituicoes)}
     </td>
 
     <td
