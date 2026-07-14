@@ -114,22 +114,24 @@ export default function Historico() {
 
       <h2
         style={{
-          textAlign: "center",
-          color: "#0d47a1",
-          marginBottom: 25,
-        }}
+  textAlign: "center",
+  color: "#0d47a1",
+  marginBottom: 25,
+  fontSize: 30,
+}}
       >
         Histórico de Visitas
       </h2>
 
       <table
         style={{
-          width: "100%",
-          borderCollapse: "collapse",
-          background: "#fff",
-          borderRadius: 10,
-          overflow: "hidden",
-        }}
+  width: "95%",
+  margin: "0 auto",
+  borderCollapse: "collapse",
+  background: "#fff",
+  borderRadius: 10,
+  overflow: "hidden",
+}}
       >
         <thead>
           <tr
@@ -138,12 +140,20 @@ export default function Historico() {
               color: "#fff",
             }}
           >
-            <th style={{ padding: 12 }}>Data</th>
-            <th>Instituição</th>
-            <th>Cidade</th>
-            <th>Técnico</th>
-            <th>Aplicador</th>
-            <th style={{ width: 180 }}>Ações</th>
+            <th
+  style={{
+    padding: 10,
+    fontSize: 15,
+    fontWeight: 600,
+  }}
+>
+  Data
+</th>
+            <th style={{ fontSize: 15 }}>Instituição</th>
+            <th style={{ fontSize: 15 }}>Cidade</th>
+            <th style={{ fontSize: 15 }}>Técnico</th>
+            <th style={{ fontSize: 15 }}>Aplicador</th>
+            <th style={{ width: 180, fontSize: 15 }}>Ações</th>
           </tr>
         </thead>
 
@@ -164,46 +174,52 @@ export default function Historico() {
 
     <td
       style={{
-        padding: 10,
-        borderBottom: "1px solid #ddd",
-      }}
+  padding: 8,
+  borderBottom: "1px solid #ddd",
+  fontSize: 13,
+}}
     >
       {visita.instituicoes?.nome ?? "-"}
     </td>
 
     <td
   style={{
-    padding: 10,
-    borderBottom: "1px solid #ddd",
-  }}
+  padding: 8,
+  borderBottom: "1px solid #ddd",
+  fontSize: 13,
+  maxWidth: 210,
+  lineHeight: 1.2,
+}}
 >
       {visita.instituicoes?.cidade ?? "-"}
     </td>
 
     <td
       style={{
-        padding: 10,
-        borderBottom: "1px solid #ddd",
-      }}
+  padding: 8,
+  borderBottom: "1px solid #ddd",
+  fontSize: 13,
+}}
     >
       {visita.tecnico_avaliado}
     </td>
 
     <td
       style={{
-        padding: 10,
-        borderBottom: "1px solid #ddd",
-      }}
+  padding: 8,
+  borderBottom: "1px solid #ddd",
+  fontSize: 13,
+}}
     >
       {visita.aplicador}
     </td>
 
     <td
       style={{
-        padding: 10,
-        borderBottom: "1px solid #ddd",
-        textAlign: "center",
-      }}
+  padding: 8,
+  borderBottom: "1px solid #ddd",
+  fontSize: 12,
+}}
  >
 
   <button
@@ -214,7 +230,7 @@ export default function Historico() {
       color: "#fff",
       border: "none",
       borderRadius: 6,
-      padding: "8px",
+      padding: "6px",
       cursor: "pointer",
     }}
   >
@@ -229,7 +245,7 @@ export default function Historico() {
       color: "#fff",
       border: "none",
       borderRadius: 6,
-      padding: "8px",
+      padding: "6px",
       cursor: "pointer",
     }}
   >
