@@ -14,13 +14,13 @@ interface Visita {
   instituicao_id: number;
 
   instituicoes: {
-    nome: string;
-    cep: string;
-    endereco: string;
-    cidade: string;
-    estado: string;
-    responsavel: string;
-  }[];
+  nome: string;
+  cep: string;
+  endereco: string;
+  cidade: string;
+  estado: string;
+  responsavel: string;
+}[];
 }
 
 export default function Historico() {
@@ -146,101 +146,128 @@ export default function Historico() {
 
           {visitas.map((visita) => (
 
-            <tr key={visita.id}>
+  <tr key={visita.id}>
 
-              <td style={{ padding:10,borderBottom:"1px solid #ddd" }}>
-                {formatarData(visita.data)}
-              </td>
+    <td
+      style={{
+        padding: 10,
+        borderBottom: "1px solid #ddd",
+      }}
+    >
+      {formatarData(visita.data)}
+    </td>
 
-              <td style={{borderBottom:"1px solid #ddd"}}>
-                {visita.instituicoes[0]?.nome}
-              </td>
+    <td
+      style={{
+        padding: 10,
+        borderBottom: "1px solid #ddd",
+      }}
+    >
+      {visita.instituicoes?.[0]?.nome ?? "-"}
+    </td>
 
-              <td style={{borderBottom:"1px solid #ddd"}}>
-                {visita.instituicoes[0]?.cidade}
-              </td>
+    <td
+      style={{
+        padding: 10,
+        borderBottom: "1px solid #ddd",
+      }}
+    >
+      {visita.instituicoes?.[0]?.cidade ?? "-"}
+    </td>
 
-              <td style={{borderBottom:"1px solid #ddd"}}>
-                {visita.tecnico_avaliado}
-              </td>
+    <td
+      style={{
+        padding: 10,
+        borderBottom: "1px solid #ddd",
+      }}
+    >
+      {visita.tecnico_avaliado}
+    </td>
 
-              <td style={{borderBottom:"1px solid #ddd"}}>
-                {visita.aplicador}
-              </td>
+    <td
+      style={{
+        padding: 10,
+        borderBottom: "1px solid #ddd",
+      }}
+    >
+      {visita.aplicador}
+    </td>
 
-              <td
-                style={{
-                  borderBottom:"1px solid #ddd",
-                  textAlign:"center"
-                }}
-              >
+    <td
+      style={{
+        padding: 10,
+        borderBottom: "1px solid #ddd",
+        textAlign: "center",
+      }}
+ >
 
-                
+  <button
+    onClick={() => abrirEdicao(visita)}
+    style={{
+      margin: 4,
+      background: "#ff9800",
+      color: "#fff",
+      border: "none",
+      borderRadius: 6,
+      padding: "8px",
+      cursor: "pointer",
+    }}
+  >
+    <EditIcon fontSize="small" />
+  </button>
 
-                <button
-                  onClick={() => abrirEdicao(visita)}
-                  style={{
-                    margin:4,
-                    background:"#ff9800",
-                    color:"#fff",
-                    border:"none",
-                    borderRadius:6,
-                    padding:"8px",
-                    cursor:"pointer"
-                  }}
-                >
-                  <EditIcon fontSize="small"/>
-                </button>
+  <button
+    onClick={() => excluirVisita(visita.id)}
+    style={{
+      margin: 4,
+      background: "#d32f2f",
+      color: "#fff",
+      border: "none",
+      borderRadius: 6,
+      padding: "8px",
+      cursor: "pointer",
+    }}
+  >
+    <DeleteIcon fontSize="small" />
+  </button>
 
-                <button
-                  onClick={() => excluirVisita(visita.id)}
-                  style={{
-                    margin:4,
-                    background:"#d32f2f",
-                    color:"#fff",
-                    border:"none",
-                    borderRadius:6,
-                    padding:"8px",
-                    cursor:"pointer"
-                  }}
-                >
-                  <DeleteIcon fontSize="small"/>
-                </button>
+</td>
 
-              </td>
+</tr>
 
-            </tr>
+))}
 
-          ))}
+{visitas.length === 0 && (
+  <tr>
+    <td
+      colSpan={6}
+      style={{
+        textAlign: "center",
+        padding: 30,
+      }}
+    >
+      Nenhuma visita cadastrada.
+    </td>
+  </tr>
+)}
 
-          {visitas.length===0 && (
-            <tr>
-              <td
-                colSpan={6}
-                style={{
-                  textAlign:"center",
-                  padding:30
-                }}
-              >
-                Nenhuma visita cadastrada.
-              </td>
-            </tr>
-          )}
+</tbody>
 
-        </tbody>
-      </table>
-            {editando && (
-        <div
-          style={{
-            position: "fixed",
-            inset: 0,
-            background: "rgba(0,0,0,.45)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            zIndex: 999,
-          }}
-        >
+</table>
+
+{editando && (
+  <div
+    style={{
+      position: "fixed",
+      inset: 0,
+      background: "rgba(0,0,0,.45)",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      zIndex: 999,
+    }}
+  >
+        
           <div
             style={{
               background: "#fff",
