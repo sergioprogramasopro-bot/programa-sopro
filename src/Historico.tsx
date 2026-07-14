@@ -165,8 +165,9 @@ export default function Historico() {
 
     <td
       style={{
-        padding: 10,
-        borderBottom: "1px solid #ddd",
+  padding: 8,
+  borderBottom: "1px solid #ddd",
+  fontSize: 13,
       }}
     >
       {formatarData(visita.data)}
@@ -176,7 +177,8 @@ export default function Historico() {
       style={{
   padding: 8,
   borderBottom: "1px solid #ddd",
-  fontSize: 13,
+  fontSize: 11,
+lineHeight: 1.2,
 }}
     >
       {visita.instituicoes?.nome ?? "-"}
@@ -226,30 +228,34 @@ export default function Historico() {
     onClick={() => abrirEdicao(visita)}
     style={{
       margin: 4,
-      background: "#ff9800",
-      color: "#fff",
-      border: "none",
-      borderRadius: 6,
-      padding: "6px",
-      cursor: "pointer",
+background: "#ff9800",
+color: "#fff",
+border: "none",
+borderRadius: 6,
+width: 30,
+height: 30,
+padding: "4px",
+cursor: "pointer",
     }}
   >
-    <EditIcon fontSize="small" />
+    <EditIcon sx={{ fontSize: 15 }} />
   </button>
 
   <button
     onClick={() => excluirVisita(visita.id)}
     style={{
-      margin: 4,
-      background: "#d32f2f",
-      color: "#fff",
-      border: "none",
-      borderRadius: 6,
-      padding: "6px",
-      cursor: "pointer",
-    }}
+  margin: 4,
+  background: "#d32f2f",
+  color: "#fff",
+  border: "none",
+  borderRadius: 6,
+  width: 30,
+  height: 30,
+  padding: "4px",
+  cursor: "pointer",
+}}
   >
-    <DeleteIcon fontSize="small" />
+    <DeleteIcon sx={{ fontSize: 15 }} />
   </button>
 
 </td>
